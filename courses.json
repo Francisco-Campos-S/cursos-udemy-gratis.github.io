@@ -6,92 +6,11 @@
       "course_id": "flutter-gemini",
       "coupon_code": "AGOSTO",
       "screenshot_path": "screenshots/flutter-gemini_focused.png",
-      "extracted_at": "2025-08-06T13:45:53.464216",
+      "extracted_at": "2025-08-06T13:57:02.194344",
       "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/elementor-hosting-como-crear-una-pagina-web-con-wordpress?couponCode=ELEMENTORH-GR73",
-      "course_id": "elementor-hosting-como-crear-una-pagina-web-con-wordpress",
-      "coupon_code": "ELEMENTORH",
-      "screenshot_path": "screenshots/elementor-hosting-como-crear-una-pagina-web-con-wordpress_focused.png",
-      "extracted_at": "2025-08-06T13:46:16.589440",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/agile-certified-practitioner-pmi-acp-practice-exam-2025-x?couponCode=AUGOPEN0",
-      "course_id": "agile-certified-practitioner-pmi-acp-practice-exam-2025-x",
-      "coupon_code": "AUGOPEN0",
-      "screenshot_path": "screenshots/agile-certified-practitioner-pmi-acp-practice-exam-2025-x_focused.png",
-      "extracted_at": "2025-08-06T13:46:37.121810",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/web3-development-essentials?couponCode=9FFC5561EFCB0654D82C",
-      "course_id": "web3-development-essentials",
-      "coupon_code": "9FFC5561EFCB0654D82C",
-      "screenshot_path": "screenshots/web3-development-essentials_focused.png",
-      "extracted_at": "2025-08-06T13:46:57.899551",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/comprehensive-flutter-development-practice-test?couponCode=SKILLMATTERS",
-      "course_id": "comprehensive-flutter-development-practice-test",
-      "coupon_code": "SKILLMATTERS",
-      "screenshot_path": "screenshots/comprehensive-flutter-development-practice-test_focused.png",
-      "extracted_at": "2025-08-06T13:47:18.496758",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/como-crear-correos-corporativos-con-dominio-propio-en-gmail?couponCode=CORREOS-GR92",
-      "course_id": "como-crear-correos-corporativos-con-dominio-propio-en-gmail",
-      "coupon_code": "CORREOS",
-      "screenshot_path": "screenshots/como-crear-correos-corporativos-con-dominio-propio-en-gmail_focused.png",
-      "extracted_at": "2025-08-06T13:47:41.453937",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "www.udemy.com",
-      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/el-proceso-administrativo-para-triunfar-y-ser-feliz?couponCode=6130AABF22FAF7AAE769",
-      "course_id": "el-proceso-administrativo-para-triunfar-y-ser-feliz",
-      "coupon_code": "6130AABF22FAF7AAE769",
-      "screenshot_path": "screenshots/el-proceso-administrativo-para-triunfar-y-ser-feliz_focused.png",
-      "extracted_at": "2025-08-06T13:48:02.298540",
-      "source_page": "Página Principal"
-    },
-    {
-      "title": "Python para Principiantes - Curso Completo 2024",
-      "url": "https://www.udemy.com/course/python-for-beginners-complete-course-2024/",
-      "course_id": "python-beginners-2024",
-      "coupon_code": "PYTHON2024FREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:48:03.299427",
-      "source_page": "Demo"
-    },
-    {
-      "title": "JavaScript Completo desde Cero hasta Avanzado",
-      "url": "https://www.udemy.com/course/javascript-complete-zero-to-advanced/",
-      "course_id": "javascript-complete-advanced",
-      "coupon_code": "JSCOMPLETEFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:48:03.299440",
-      "source_page": "Demo"
-    },
-    {
-      "title": "React.js - Curso Completo con Hooks y Context",
-      "url": "https://www.udemy.com/course/react-js-complete-course-hooks-context/",
-      "course_id": "react-complete-hooks",
-      "coupon_code": "REACTFULLFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:48:03.299442",
-      "source_page": "Demo"
     }
   ],
-  "total_courses": 10,
-  "last_updated": "2025-08-06T13:48:03.302832",
+  "total_courses": 1,
+  "last_updated": "2025-08-06T14:46:11.580924",
   "source": "CursosDev.com"
 }
