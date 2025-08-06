@@ -1,12 +1,12 @@
 {
   "courses": [
     {
-      "title": "www.udemy.com",
+      "title": "Flutter + Gemini: Aplicaciones con inteligencia artificial",
       "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/flutter-gemini/?couponCode=AGOSTO-2025",
       "course_id": "flutter-gemini",
       "coupon_code": "AGOSTO",
       "screenshot_path": "screenshots/flutter-gemini_focused.png",
-      "extracted_at": "2025-08-06T13:38:43.814381",
+      "extracted_at": "2025-08-06T13:45:53.464216",
       "source_page": "Página Principal"
     },
     {
@@ -15,7 +15,7 @@
       "course_id": "elementor-hosting-como-crear-una-pagina-web-con-wordpress",
       "coupon_code": "ELEMENTORH",
       "screenshot_path": "screenshots/elementor-hosting-como-crear-una-pagina-web-con-wordpress_focused.png",
-      "extracted_at": "2025-08-06T13:39:00.049471",
+      "extracted_at": "2025-08-06T13:46:16.589440",
       "source_page": "Página Principal"
     },
     {
@@ -24,7 +24,7 @@
       "course_id": "agile-certified-practitioner-pmi-acp-practice-exam-2025-x",
       "coupon_code": "AUGOPEN0",
       "screenshot_path": "screenshots/agile-certified-practitioner-pmi-acp-practice-exam-2025-x_focused.png",
-      "extracted_at": "2025-08-06T13:39:16.648898",
+      "extracted_at": "2025-08-06T13:46:37.121810",
       "source_page": "Página Principal"
     },
     {
@@ -33,7 +33,7 @@
       "course_id": "web3-development-essentials",
       "coupon_code": "9FFC5561EFCB0654D82C",
       "screenshot_path": "screenshots/web3-development-essentials_focused.png",
-      "extracted_at": "2025-08-06T13:39:32.842739",
+      "extracted_at": "2025-08-06T13:46:57.899551",
       "source_page": "Página Principal"
     },
     {
@@ -42,7 +42,7 @@
       "course_id": "comprehensive-flutter-development-practice-test",
       "coupon_code": "SKILLMATTERS",
       "screenshot_path": "screenshots/comprehensive-flutter-development-practice-test_focused.png",
-      "extracted_at": "2025-08-06T13:39:49.481556",
+      "extracted_at": "2025-08-06T13:47:18.496758",
       "source_page": "Página Principal"
     },
     {
@@ -51,7 +51,7 @@
       "course_id": "como-crear-correos-corporativos-con-dominio-propio-en-gmail",
       "coupon_code": "CORREOS",
       "screenshot_path": "screenshots/como-crear-correos-corporativos-con-dominio-propio-en-gmail_focused.png",
-      "extracted_at": "2025-08-06T13:40:05.713726",
+      "extracted_at": "2025-08-06T13:47:41.453937",
       "source_page": "Página Principal"
     },
     {
@@ -60,7 +60,7 @@
       "course_id": "el-proceso-administrativo-para-triunfar-y-ser-feliz",
       "coupon_code": "6130AABF22FAF7AAE769",
       "screenshot_path": "screenshots/el-proceso-administrativo-para-triunfar-y-ser-feliz_focused.png",
-      "extracted_at": "2025-08-06T13:40:23.066390",
+      "extracted_at": "2025-08-06T13:48:02.298540",
       "source_page": "Página Principal"
     },
     {
@@ -69,7 +69,7 @@
       "course_id": "python-beginners-2024",
       "coupon_code": "PYTHON2024FREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:40:24.067385",
+      "extracted_at": "2025-08-06T13:48:03.299427",
       "source_page": "Demo"
     },
     {
@@ -78,7 +78,7 @@
       "course_id": "javascript-complete-advanced",
       "coupon_code": "JSCOMPLETEFREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:40:24.067399",
+      "extracted_at": "2025-08-06T13:48:03.299440",
       "source_page": "Demo"
     },
     {
@@ -87,11 +87,11 @@
       "course_id": "react-complete-hooks",
       "coupon_code": "REACTFULLFREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:40:24.067402",
+      "extracted_at": "2025-08-06T13:48:03.299442",
       "source_page": "Demo"
     }
   ],
   "total_courses": 10,
-  "last_updated": "2025-08-06T13:40:24.071219",
+  "last_updated": "2025-08-06T13:48:03.302832",
   "source": "CursosDev.com"
 }

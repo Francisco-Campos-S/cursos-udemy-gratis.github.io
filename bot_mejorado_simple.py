@@ -185,68 +185,466 @@ def extract_coupon_from_url(url):
     except:
         return "GRATIS"
 
-def verify_course_is_free(driver, url):
-    """Verificar que el curso sea realmente gratis"""
+def verify_course_is_free(driver, udemy_url):
+    """Verificar si el curso es 100% gratis navegando a la página de Udemy"""
     try:
-        print(f"🔍 Verificando si el curso es gratis: {url}")
+        print(f"🔍 Verificando si el curso es gratis: {udemy_url}")
         
-        # Navegar a la página
-        driver.get(url)
+        # Navegar a la página del curso
+        driver.get(udemy_url)
         time.sleep(5)  # Más tiempo para cargar
         
         # Verificar si estamos en una página de Cloudflare
         page_source = driver.page_source.lower()
         if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
             print("⚠️ Detectada página de verificación Cloudflare")
-            print("💡 Asumiendo que el curso es gratis basado en el cupón en la URL")
-            return True
+            print("💡 Intentando esperar a que se complete la verificación...")
+            time.sleep(10)  # Esperar más tiempo para que se complete la verificación
+            page_source = driver.page_source.lower()
         
-        # Buscar indicadores de que el curso es gratis
+        # Obtener el texto de la página
+        page_text = page_source
+        
+        # Buscar indicadores específicos de precio (más precisos)
+        price_patterns = [
+            r'\$\d+\.?\d*',  # $19.99, $20, etc.
+            r'€\d+\.?\d*',   # €19.99, €20, etc.
+            r'£\d+\.?\d*',   # £19.99, £20, etc.
+            r'\d+\.?\d*\s*\$',  # 19.99 $, 20 $, etc.
+            r'\d+\.?\d*\s*€',   # 19.99 €, 20 €, etc.
+            r'\d+\.?\d*\s*£',   # 19.99 £, 20 £, etc.
+            r'precio.*?\$\d+',  # precio $19
+            r'price.*?\$\d+',   # price $19
+            r'costo.*?\$\d+',   # costo $19
+            r'cost.*?\$\d+'     # cost $19
+        ]
+        
+        # Verificar si hay precios específicos (no $0)
+        has_price = False
+        for pattern in price_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE)
+            for match in matches:
+                # Extraer solo el número del precio
+                price_number = re.search(r'\d+\.?\d*', match)
+                if price_number:
+                    price_value = float(price_number.group())
+                    if price_value > 0:  # Si el precio es mayor a 0
+                        has_price = True
+                        print(f"❌ Precio detectado: {match} (valor: {price_value})")
+                        break
+            if has_price:
+                break
+        
+        # Buscar indicadores específicos de gratis (más amplios)
         free_indicators = [
             "100% gratis",
-            "100% free",
-            "Inscribirse gratis", 
-            "Get for free",
-            "Enroll for free",
-            "Gratis",
-            "Free"
+            "100% free", 
+            "gratis",
+            "free",
+            "$0",
+            "0.00",
+            "0,00",
+            "gratuito",
+            "sin costo",
+            "no cost",
+            "completamente gratis",
+            "completely free",
+            "inscribirse gratis",
+            "enroll for free",
+            "inscribirse sin costo",
+            "enroll at no cost",
+            "inscribirse ahora",
+            "enroll now",
+            "add to cart",
+            "agregar al carrito",
+            "free enrollment",
+            "inscripción gratuita",
+            "curso gratuito",
+            "free course",
+            "sin pagar",
+            "no payment",
+            "gratis para siempre",
+            "free forever"
         ]
         
+        # Verificar si hay indicadores de gratis
+        is_free = False
         for indicator in free_indicators:
-            if indicator.lower() in page_source:
-                print(f"✅ Confirmado: {indicator}")
-                return True
+            if indicator.lower() in page_text:
+                is_free = True
+                print(f"✅ Indicador de gratis encontrado: {indicator}")
+                break
         
-        # Buscar precios $0 o 0€
-        price_selectors = [
-            "span[data-purpose='price-text']",
-            ".price-text",
-            ".course-price",
-            "[data-testid='price-text']"
+        # Buscar botones específicos de inscripción gratuita
+        free_button_selectors = [
+            "//button[contains(text(), 'Inscribirse gratis')]",
+            "//button[contains(text(), 'Enroll for free')]",
+            "//button[contains(text(), 'Inscribirse sin costo')]",
+            "//button[contains(text(), 'Enroll at no cost')]",
+            "//button[contains(text(), 'Inscribirse ahora')]",
+            "//button[contains(text(), 'Enroll now')]",
+            "//a[contains(text(), 'Inscribirse gratis')]",
+            "//a[contains(text(), 'Enroll for free')]",
+            "//button[contains(text(), 'Free')]",
+            "//button[contains(text(), 'Gratis')]",
+            "//a[contains(text(), 'Free')]",
+            "//a[contains(text(), 'Gratis')]",
+            "//span[contains(text(), 'Free')]",
+            "//span[contains(text(), 'Gratis')]"
         ]
         
-        for selector in price_selectors:
+        for selector in free_button_selectors:
             try:
-                elements = driver.find_elements(By.CSS_SELECTOR, selector)
-                for element in elements:
-                    price_text = element.text.lower()
-                    if any(price in price_text for price in ['$0', '0€', 'gratis', 'free', '0.00']):
-                        print(f"✅ Precio confirmado: {element.text}")
-                        return True
+                buttons = driver.find_elements(By.XPATH, selector)
+                if buttons:
+                    print(f"✅ Botón de inscripción gratuita encontrado: {selector}")
+                    is_free = True
+                    break
             except:
                 continue
         
-        # Si hay cupón en la URL, asumir que es gratis
-        if "coupon" in url.lower() or "cupon" in url.lower():
-            print("✅ Cupón detectado en URL, asumiendo curso gratis")
-            return True
+        # Buscar elementos con precio $0 o 0€
+        zero_price_selectors = [
+            "//span[contains(text(), '$0')]",
+            "//span[contains(text(), '0€')]",
+            "//span[contains(text(), '0.00')]",
+            "//div[contains(text(), '$0')]",
+            "//div[contains(text(), '0€')]",
+            "//div[contains(text(), '0.00')]"
+        ]
         
-        print("❌ No se confirmó que el curso sea gratis")
-        return False
+        for selector in zero_price_selectors:
+            try:
+                elements = driver.find_elements(By.XPATH, selector)
+                if elements:
+                    print(f"✅ Precio $0 encontrado: {selector}")
+                    is_free = True
+                    break
+            except:
+                continue
+        
+        # Lógica de decisión mejorada
+        if has_price and not is_free:
+            print("❌ El curso tiene precio, no es gratis")
+            return False
+        elif is_free:
+            print("✅ El curso es 100% gratis")
+            return True
+        else:
+            # Verificación adicional: buscar si hay botones de compra
+            buy_button_selectors = [
+                "//button[contains(text(), 'Buy')]",
+                "//button[contains(text(), 'Comprar')]",
+                "//button[contains(text(), 'Purchase')]",
+                "//button[contains(text(), 'Add to cart')]",
+                "//button[contains(text(), 'Agregar al carrito')]",
+                "//button[contains(text(), 'Buy now')]",
+                "//button[contains(text(), 'Comprar ahora')]"
+            ]
+            
+            has_buy_button = False
+            for selector in buy_button_selectors:
+                try:
+                    buttons = driver.find_elements(By.XPATH, selector)
+                    if buttons:
+                        print(f"❌ Botón de compra encontrado: {selector}")
+                        has_buy_button = True
+                        break
+                except:
+                    continue
+            
+            if has_buy_button:
+                return False
+            
+            # Si no encontramos indicadores claros, verificar cupón
+            print("⚠️ No se encontraron indicadores claros, verificando cupón...")
+            
+            # Verificar si el cupón hace el curso gratis
+            if 'couponcode=' in udemy_url.lower() or 'cupon=' in udemy_url.lower():
+                print("✅ Cupón detectado en URL, asumiendo que puede hacer el curso gratis")
+                return True
+            
+            print("❌ No se encontraron indicadores claros de que sea gratis")
+            return False
         
     except Exception as e:
-        print(f"❌ Error al verificar curso: {str(e)}")
+        print(f"⚠️ Error verificando si el curso es gratis: {e}")
         return False
+
+def verify_course_is_free_and_screenshot(driver, udemy_url, course_id):
+    """Verificar si el curso es gratis y tomar captura durante la verificación"""
+    try:
+        print(f"🔍 Verificando si el curso es gratis: {udemy_url}")
+        
+        # Navegar a la página del curso
+        driver.get(udemy_url)
+        time.sleep(5)  # Más tiempo para cargar
+        
+        # Verificar si estamos en una página de Cloudflare
+        page_source = driver.page_source.lower()
+        if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
+            print("⚠️ Detectada página de verificación Cloudflare")
+            print("💡 Intentando esperar a que se complete la verificación...")
+            time.sleep(10)  # Esperar más tiempo para que se complete la verificación
+            page_source = driver.page_source.lower()
+        
+        # Obtener el texto de la página
+        page_text = page_source
+        
+        # Buscar indicadores específicos de precio (más precisos)
+        price_patterns = [
+            r'\$\d+\.?\d*',  # $19.99, $20, etc.
+            r'€\d+\.?\d*',   # €19.99, €20, etc.
+            r'£\d+\.?\d*',   # £19.99, £20, etc.
+            r'\d+\.?\d*\s*\$',  # 19.99 $, 20 $, etc.
+            r'\d+\.?\d*\s*€',   # 19.99 €, 20 €, etc.
+            r'\d+\.?\d*\s*£',   # 19.99 £, 20 £, etc.
+            r'precio.*?\$\d+',  # precio $19
+            r'price.*?\$\d+',   # price $19
+            r'costo.*?\$\d+',   # costo $19
+            r'cost.*?\$\d+'     # cost $19
+        ]
+        
+        # Verificar si hay precios específicos (no $0)
+        has_price = False
+        for pattern in price_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE)
+            for match in matches:
+                # Extraer solo el número del precio
+                price_number = re.search(r'\d+\.?\d*', match)
+                if price_number:
+                    price_value = float(price_number.group())
+                    if price_value > 0:  # Si el precio es mayor a 0
+                        has_price = True
+                        print(f"❌ Precio detectado: {match} (valor: {price_value})")
+                        break
+            if has_price:
+                break
+        
+        # Buscar indicadores específicos de gratis (más amplios)
+        free_indicators = [
+            "100% gratis",
+            "100% free", 
+            "gratis",
+            "free",
+            "$0",
+            "0.00",
+            "0,00",
+            "gratuito",
+            "sin costo",
+            "no cost",
+            "completamente gratis",
+            "completely free",
+            "inscribirse gratis",
+            "enroll for free",
+            "inscribirse sin costo",
+            "enroll at no cost",
+            "inscribirse ahora",
+            "enroll now",
+            "add to cart",
+            "agregar al carrito",
+            "free enrollment",
+            "inscripción gratuita",
+            "curso gratuito",
+            "free course",
+            "sin pagar",
+            "no payment",
+            "gratis para siempre",
+            "free forever"
+        ]
+        
+        # Verificar si hay indicadores de gratis
+        is_free = False
+        free_element = None
+        for indicator in free_indicators:
+            if indicator.lower() in page_text:
+                is_free = True
+                print(f"✅ Indicador de gratis encontrado: {indicator}")
+                # Buscar el elemento específico para la captura
+                try:
+                    elements = driver.find_elements(By.XPATH, f"//*[contains(text(), '{indicator}')]")
+                    if elements:
+                        free_element = elements[0]
+                        break
+                except:
+                    pass
+                break
+        
+        # Buscar botones específicos de inscripción gratuita
+        free_button_selectors = [
+            "//button[contains(text(), 'Inscribirse gratis')]",
+            "//button[contains(text(), 'Enroll for free')]",
+            "//button[contains(text(), 'Inscribirse sin costo')]",
+            "//button[contains(text(), 'Enroll at no cost')]",
+            "//button[contains(text(), 'Inscribirse ahora')]",
+            "//button[contains(text(), 'Enroll now')]",
+            "//a[contains(text(), 'Inscribirse gratis')]",
+            "//a[contains(text(), 'Enroll for free')]",
+            "//button[contains(text(), 'Free')]",
+            "//button[contains(text(), 'Gratis')]",
+            "//a[contains(text(), 'Free')]",
+            "//a[contains(text(), 'Gratis')]",
+            "//span[contains(text(), 'Free')]",
+            "//span[contains(text(), 'Gratis')]"
+        ]
+        
+        for selector in free_button_selectors:
+            try:
+                buttons = driver.find_elements(By.XPATH, selector)
+                if buttons:
+                    print(f"✅ Botón de inscripción gratuita encontrado: {selector}")
+                    is_free = True
+                    free_element = buttons[0]
+                    break
+            except:
+                continue
+        
+        # Buscar elementos con precio $0 o 0€
+        zero_price_selectors = [
+            "//span[contains(text(), '$0')]",
+            "//span[contains(text(), '0€')]",
+            "//span[contains(text(), '0.00')]",
+            "//div[contains(text(), '$0')]",
+            "//div[contains(text(), '0€')]",
+            "//div[contains(text(), '0.00')]"
+        ]
+        
+        for selector in zero_price_selectors:
+            try:
+                elements = driver.find_elements(By.XPATH, selector)
+                if elements:
+                    print(f"✅ Precio $0 encontrado: {selector}")
+                    is_free = True
+                    free_element = elements[0]
+                    break
+            except:
+                continue
+        
+        # Lógica de decisión mejorada
+        if has_price and not is_free:
+            print("❌ El curso tiene precio, no es gratis")
+            return False, None
+        elif is_free:
+            print("✅ El curso es 100% gratis")
+            
+            # Tomar captura enfocada en el elemento de gratis
+            screenshot_path = take_focused_screenshot_from_element(driver, free_element, course_id)
+            return True, screenshot_path
+        else:
+            # Verificación adicional: buscar si hay botones de compra
+            buy_button_selectors = [
+                "//button[contains(text(), 'Buy')]",
+                "//button[contains(text(), 'Comprar')]",
+                "//button[contains(text(), 'Purchase')]",
+                "//button[contains(text(), 'Add to cart')]",
+                "//button[contains(text(), 'Agregar al carrito')]",
+                "//button[contains(text(), 'Buy now')]",
+                "//button[contains(text(), 'Comprar ahora')]"
+            ]
+            
+            has_buy_button = False
+            for selector in buy_button_selectors:
+                try:
+                    buttons = driver.find_elements(By.XPATH, selector)
+                    if buttons:
+                        print(f"❌ Botón de compra encontrado: {selector}")
+                        has_buy_button = True
+                        break
+                except:
+                    continue
+            
+            if has_buy_button:
+                return False, None
+            
+            # Si no encontramos indicadores claros, verificar cupón
+            print("⚠️ No se encontraron indicadores claros, verificando cupón...")
+            
+            # Verificar si el cupón hace el curso gratis
+            if 'couponcode=' in udemy_url.lower() or 'cupon=' in udemy_url.lower():
+                print("✅ Cupón detectado en URL, asumiendo que puede hacer el curso gratis")
+                # Tomar captura completa ya que no encontramos elemento específico
+                screenshot_path = take_focused_screenshot_from_element(driver, None, course_id)
+                return True, screenshot_path
+            
+            print("❌ No se encontraron indicadores claros de que sea gratis")
+            return False, None
+        
+    except Exception as e:
+        print(f"⚠️ Error verificando si el curso es gratis: {e}")
+        return False, None
+
+def take_focused_screenshot_from_element(driver, focused_element, course_id):
+    """Tomar captura enfocada en un elemento específico o completa si no se especifica"""
+    try:
+        print(f"📸 Tomando captura enfocada...")
+        
+        # Verificar si estamos en una página de Cloudflare
+        page_source = driver.page_source.lower()
+        if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
+            print("⚠️ Detectada página de verificación Cloudflare")
+            print("📸 Tomando captura de la página de verificación")
+            screenshot = driver.get_screenshot_as_png()
+        else:
+            # Si no se especifica elemento, tomar captura completa
+            if not focused_element:
+                print("📸 Tomando captura completa de la página")
+                screenshot = driver.get_screenshot_as_png()
+            else:
+                # Tomar captura enfocada en el elemento
+                location = focused_element.location
+                size = focused_element.size
+                
+                # Tomar captura completa
+                screenshot = driver.get_screenshot_as_png()
+                
+                # Recortar la imagen para enfocarse en el elemento
+                img = Image.open(io.BytesIO(screenshot))
+                
+                # Calcular coordenadas del elemento
+                left = location['x']
+                top = location['y']
+                right = location['x'] + size['width']
+                bottom = location['y'] + size['height']
+                
+                # Agregar margen más amplio para incluir título del curso
+                margin_x = 200  # Margen horizontal más amplio
+                margin_y = 100  # Margen vertical
+                
+                left = max(0, left - margin_x)
+                top = max(0, top - margin_y)
+                right = min(img.width, right + margin_x)
+                bottom = min(img.height, bottom + margin_y)
+                
+                # Recortar la imagen
+                img = img.crop((left, top, right, bottom))
+                screenshot = io.BytesIO()
+                img.save(screenshot, format='PNG')
+                screenshot = screenshot.getvalue()
+        
+        # Redimensionar la imagen para que sea más pequeña
+        img = Image.open(io.BytesIO(screenshot))
+        
+        # Calcular nuevas dimensiones (máximo 500px de ancho para mejor calidad)
+        max_width = 500
+        if img.width > max_width:
+            ratio = max_width / img.width
+            new_width = max_width
+            new_height = int(img.height * ratio)
+            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+        
+        # Guardar la imagen optimizada
+        screenshot_path = f"screenshots/{course_id}_focused.png"
+        os.makedirs("screenshots", exist_ok=True)
+        
+        # Guardar con compresión
+        img.save(screenshot_path, "PNG", optimize=True, quality=90)
+        
+        print(f"✅ Captura guardada: {screenshot_path}")
+        return screenshot_path
+        
+    except Exception as e:
+        print(f"❌ Error al tomar captura: {str(e)}")
+        return None
 
 def extract_courses_from_cursosdev(driver, max_courses=10):
     """Extraer cursos de CursosDev: 10 de IT y 10 de la página principal"""
@@ -369,13 +767,12 @@ def extract_courses_from_cursosdev(driver, max_courses=10):
                             
                             print(f"         🆔 ID del curso: {course_id}")
                             
-                            # Verificar que el curso sea gratis
-                            if not verify_course_is_free(driver, url):
+                            # Verificar que el curso sea gratis y tomar captura durante la verificación
+                            is_free, screenshot_path = verify_course_is_free_and_screenshot(driver, url, course_id)
+                            if not is_free:
                                 print("         ❌ Curso no es gratis, saltando...")
                                 continue
                             
-                            # Tomar captura enfocada
-                            screenshot_path = take_focused_screenshot(driver, url, course_id)
                             if not screenshot_path:
                                 print("         ⚠️ No se pudo tomar captura, continuando...")
                             
