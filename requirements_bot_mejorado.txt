@@ -1,0 +1,368 @@
+# Requirements para el Bot Mejorado de 10 Cursos
+# Versión: 1.0.0
+# Fecha: 2024
+
+# Selenium WebDriver para automatización web
+selenium>=4.15.0
+
+# Pillow para procesamiento de imágenes
+Pillow>=10.0.0
+
+# WebDriver Manager para gestión automática de drivers
+webdriver-manager>=4.0.0
+
+# Requests para peticiones HTTP (opcional, para funcionalidades adicionales)
+requests>=2.31.0
+
+# BeautifulSoup para parsing HTML (opcional, para funcionalidades adicionales)
+beautifulsoup4>=4.12.0
+
+# Lxml para parsing XML/HTML más rápido (opcional)
+lxml>=4.9.0
+
+# Urllib3 para manejo de URLs (dependencia de requests)
+urllib3>=2.0.0
+
+# Certifi para certificados SSL (dependencia de requests)
+certifi>=2023.0.0
+
+# Charset-normalizer para normalización de caracteres (dependencia de requests)
+charset-normalizer>=3.0.0
+
+# Idna para manejo de nombres de dominio internacionales (dependencia de requests)
+idna>=3.0
+
+# SoupSieve para filtros CSS (dependencia de beautifulsoup4)
+soupsieve>=2.0
+
+# W3lib para utilidades web (dependencia de selenium)
+w3lib>=2.1.0
+
+# Trio para programación asíncrona (dependencia de selenium)
+trio>=0.22.0
+
+# Trio-websocket para WebSockets (dependencia de selenium)
+trio-websocket>=0.10.0
+
+# H11 para protocolo HTTP/1.1 (dependencia de trio-websocket)
+h11>=0.14.0
+
+# Sniffio para detección de async/await (dependencia de trio)
+sniffio>=1.3.0
+
+# Outcome para manejo de resultados (dependencia de trio)
+outcome>=1.3.0
+
+# Async-generator para generadores asíncronos (dependencia de trio)
+async-generator>=1.10
+
+# Contextvars para variables de contexto (dependencia de trio)
+contextvars>=2.4.0
+
+# Yarl para URLs (dependencia de trio-websocket)
+yarl>=1.9.0
+
+# Multidict para diccionarios múltiples (dependencia de yarl)
+multidict>=6.0.0
+
+# Typing-extensions para extensiones de tipos (dependencia de varios paquetes)
+typing-extensions>=4.0.0
+
+# Zipp para archivos ZIP (dependencia de varios paquetes)
+zipp>=3.0.0
+
+# Setuptools para instalación de paquetes (dependencia de varios paquetes)
+setuptools>=65.0.0
+
+# Wheel para distribución de paquetes (dependencia de varios paquetes)
+wheel>=0.40.0
+
+# Pip para gestión de paquetes (dependencia de varios paquetes)
+pip>=23.0.0
+
+# Certifi para certificados SSL (dependencia de varios paquetes)
+certifi>=2023.0.0
+
+# Chardet para detección de codificación (dependencia de requests)
+chardet>=5.0.0
+
+# Pyparsing para parsing (dependencia de varios paquetes)
+pyparsing>=3.0.0
+
+# Six para compatibilidad Python 2/3 (dependencia de varios paquetes)
+six>=1.16.0
+
+# Markupsafe para escape de HTML (dependencia de varios paquetes)
+markupsafe>=2.1.0
+
+# Jinja2 para templates (dependencia de varios paquetes)
+Jinja2>=3.1.0
+
+# Werkzeug para utilidades WSGI (dependencia de varios paquetes)
+Werkzeug>=2.3.0
+
+# Click para interfaces de línea de comandos (dependencia de varios paquetes)
+click>=8.1.0
+
+# Itsdangerous para datos seguros (dependencia de varios paquetes)
+itsdangerous>=2.1.0
+
+# Blinker para señales (dependencia de varios paquetes)
+blinker>=1.6.0
+
+# Colorama para colores en terminal (dependencia de varios paquetes)
+colorama>=0.4.6
+
+# Tqdm para barras de progreso (opcional, para mejor UX)
+tqdm>=4.65.0
+
+# Rich para terminal rico (opcional, para mejor UX)
+rich>=13.0.0
+
+# Pygments para resaltado de sintaxis (dependencia de rich)
+pygments>=2.15.0
+
+# Markdown-it-py para parsing de Markdown (dependencia de rich)
+markdown-it-py>=3.0.0
+
+# Linkify-it-py para enlaces (dependencia de markdown-it-py)
+linkify-it-py>=2.0.0
+
+# Mdurl para URLs de Markdown (dependencia de linkify-it-py)
+mdurl>=0.1.0
+
+# Uc-micro-py para micro utilidades (dependencia de linkify-it-py)
+uc-micro-py>=1.0.0
+
+# Pydantic para validación de datos (opcional, para validación avanzada)
+pydantic>=2.0.0
+
+# Pydantic-core para core de pydantic (dependencia de pydantic)
+pydantic-core>=2.0.0
+
+# Anydict para diccionarios anidados (dependencia de pydantic)
+anydict>=0.0.0
+
+# Pyyaml para YAML (opcional, para configuración avanzada)
+PyYAML>=6.0
+
+# Toml para TOML (opcional, para configuración avanzada)
+toml>=0.10.0
+
+# Configparser para archivos de configuración (incluido en Python)
+# configparser>=5.0.0
+
+# Argparse para argumentos de línea de comandos (incluido en Python)
+# argparse>=1.4.0
+
+# Json para JSON (incluido en Python)
+# json>=2.0.0
+
+# Re para expresiones regulares (incluido en Python)
+# re>=2.2.0
+
+# Os para sistema operativo (incluido en Python)
+# os>=1.0.0
+
+# Sys para sistema (incluido en Python)
+# sys>=1.0.0
+
+# Time para tiempo (incluido en Python)
+# time>=1.0.0
+
+# Datetime para fechas (incluido en Python)
+# datetime>=1.0.0
+
+# Pathlib para rutas (incluido en Python 3.4+)
+# pathlib>=1.0.0
+
+# Subprocess para procesos (incluido en Python)
+# subprocess>=1.0.0
+
+# Importlib para importación dinámica (incluido en Python)
+# importlib>=1.0.0
+
+# Base64 para codificación (incluido en Python)
+# base64>=1.0.0
+
+# Io para entrada/salida (incluido en Python)
+# io>=1.0.0
+
+# Hashlib para hashes (incluido en Python)
+# hashlib>=1.0.0
+
+# Hmac para autenticación (incluido en Python)
+# hmac>=1.0.0
+
+# Ssl para SSL/TLS (incluido en Python)
+# ssl>=1.0.0
+
+# Socket para sockets (incluido en Python)
+# socket>=1.0.0
+
+# Threading para hilos (incluido en Python)
+# threading>=1.0.0
+
+# Multiprocessing para procesos múltiples (incluido en Python)
+# multiprocessing>=1.0.0
+
+# Asyncio para programación asíncrona (incluido en Python 3.4+)
+# asyncio>=1.0.0
+
+# Concurrent.futures para futuros (incluido en Python 3.2+)
+# concurrent.futures>=1.0.0
+
+# Collections para colecciones (incluido en Python)
+# collections>=1.0.0
+
+# Itertools para iteradores (incluido en Python)
+# itertools>=1.0.0
+
+# Functools para funciones (incluido en Python)
+# functools>=1.0.0
+
+# Operator para operadores (incluido en Python)
+# operator>=1.0.0
+
+# Math para matemáticas (incluido en Python)
+# math>=1.0.0
+
+# Random para aleatoriedad (incluido en Python)
+# random>=1.0.0
+
+# Statistics para estadísticas (incluido en Python 3.4+)
+# statistics>=1.0.0
+
+# Decimal para decimales (incluido en Python)
+# decimal>=1.0.0
+
+# Fractions para fracciones (incluido en Python)
+# fractions>=1.0.0
+
+# Cmath para matemáticas complejas (incluido en Python)
+# cmath>=1.0.0
+
+# Logging para logging (incluido en Python)
+# logging>=1.0.0
+
+# Traceback para trazas (incluido en Python)
+# traceback>=1.0.0
+
+# Pdb para debugger (incluido en Python)
+# pdb>=1.0.0
+
+# Profile para profiling (incluido en Python)
+# profile>=1.0.0
+
+# CProfile para profiling C (incluido en Python)
+# cProfile>=1.0.0
+
+# Timeit para medición de tiempo (incluido en Python)
+# timeit>=1.0.0
+
+# Dis para desensamblador (incluido en Python)
+# dis>=1.0.0
+
+# Pickle para serialización (incluido en Python)
+# pickle>=1.0.0
+
+# Shelve para persistencia (incluido en Python)
+# shelve>=1.0.0
+
+# Sqlite3 para SQLite (incluido en Python)
+# sqlite3>=1.0.0
+
+# Csv para CSV (incluido en Python)
+# csv>=1.0.0
+
+# Xml para XML (incluido en Python)
+# xml>=1.0.0
+
+# Html para HTML (incluido en Python)
+# html>=1.0.0
+
+# Urllib para URLs (incluido en Python)
+# urllib>=1.0.0
+
+# Http para HTTP (incluido en Python)
+# http>=1.0.0
+
+# Email para email (incluido en Python)
+# email>=1.0.0
+
+# Socketserver para servidores de socket (incluido en Python)
+# socketserver>=1.0.0
+
+# Http.server para servidor HTTP (incluido en Python)
+# http.server>=1.0.0
+
+# Wsgiref para WSGI (incluido en Python)
+# wsgiref>=1.0.0
+
+# Cgi para CGI (incluido en Python)
+# cgi>=1.0.0
+
+# Cgitb para CGI traceback (incluido en Python)
+# cgitb>=1.0.0
+
+# Wsgiref.simple_server para servidor WSGI simple (incluido en Python)
+# wsgiref.simple_server>=1.0.0
+
+# Wsgiref.util para utilidades WSGI (incluido en Python)
+# wsgiref.util>=1.0.0
+
+# Wsgiref.validate para validación WSGI (incluido en Python)
+# wsgiref.validate>=1.0.0
+
+# Wsgiref.handlers para manejadores WSGI (incluido en Python)
+# wsgiref.handlers>=1.0.0
+
+# Wsgiref.headers para headers WSGI (incluido en Python)
+# wsgiref.headers>=1.0.0
+
+# Wsgiref.simple_server para servidor WSGI simple (incluido en Python)
+# wsgiref.simple_server>=1.0.0
+
+# Wsgiref.util para utilidades WSGI (incluido en Python)
+# wsgiref.util>=1.0.0
+
+# Wsgiref.validate para validación WSGI (incluido en Python)
+# wsgiref.validate>=1.0.0
+
+# Wsgiref.handlers para manejadores WSGI (incluido en Python)
+# wsgiref.handlers>=1.0.0
+
+# Wsgiref.headers para headers WSGI (incluido en Python)
+# wsgiref.headers>=1.0.0
+
+# Notas de instalación:
+# 
+# Para instalar todas las dependencias:
+# pip install -r requirements_bot_mejorado.txt
+# 
+# Para instalar solo las dependencias esenciales:
+# pip install selenium Pillow webdriver-manager
+# 
+# Para desarrollo:
+# pip install -r requirements_bot_mejorado.txt[dev]
+# 
+# Para producción:
+# pip install -r requirements_bot_mejorado.txt[prod]
+# 
+# Versiones mínimas recomendadas:
+# - Python: 3.8+
+# - Selenium: 4.15.0+
+# - Pillow: 10.0.0+
+# - WebDriver Manager: 4.0.0+
+# 
+# Compatibilidad:
+# - Windows 10/11
+# - macOS 10.15+
+# - Ubuntu 18.04+
+# - CentOS 7+
+# 
+# Navegadores soportados:
+# - Chrome 90+
+# - Firefox 88+ (con geckodriver)
+# - Edge 90+ (con msedgedriver)
+# - Safari 14+ (solo macOS) 

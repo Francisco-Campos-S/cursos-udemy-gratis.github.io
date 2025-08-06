@@ -1,18 +1,87 @@
 {
-  "metadata": {
-    "total_courses": 1,
-    "last_update": "2025-08-06T12:38:10.247069",
-    "source": "CursosDev",
-    "note": "Solo publicación web - Sin envío a WhatsApp"
-  },
   "courses": [
     {
-      "title": "Elementor Hosting Como Crear Una Pagina Web Con Wordpress",
-      "url": "https://www.udemy.com/course/elementor-hosting-como-crear-una-pagina-web-con-wordpress/?couponCode=ELEMENTORH-GR73",
-      "coupon_code": "ELEMENTORH",
-      "screenshot": "screenshots\\00_Elementor-Hosting-Como-Crear-Una-Pagina-Web-Con-Wordpress_20250806_123803.png",
-      "source": "CursosDev",
-      "extracted_at": "2025-08-06T12:38:03.590651"
+      "title": "Python para Principiantes - Curso Completo 2024",
+      "url": "https://www.udemy.com/course/python-for-beginners-complete-course-2024/",
+      "course_id": "python-beginners-2024",
+      "coupon_code": "PYTHON2024FREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946124"
+    },
+    {
+      "title": "JavaScript Completo desde Cero hasta Avanzado",
+      "url": "https://www.udemy.com/course/javascript-complete-zero-to-advanced/",
+      "course_id": "javascript-complete-advanced",
+      "coupon_code": "JSCOMPLETEFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946146"
+    },
+    {
+      "title": "React.js - Curso Completo con Hooks y Context",
+      "url": "https://www.udemy.com/course/react-js-complete-course-hooks-context/",
+      "course_id": "react-complete-hooks",
+      "coupon_code": "REACTFULLFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946148"
+    },
+    {
+      "title": "Node.js y Express - Backend Development",
+      "url": "https://www.udemy.com/course/nodejs-express-backend-development/",
+      "course_id": "nodejs-express-backend",
+      "coupon_code": "NODEFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946149"
+    },
+    {
+      "title": "MongoDB - Base de Datos NoSQL Completa",
+      "url": "https://www.udemy.com/course/mongodb-nosql-database-complete/",
+      "course_id": "mongodb-nosql-complete",
+      "coupon_code": "MONGODBFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946150"
+    },
+    {
+      "title": "Git y GitHub - Control de Versiones",
+      "url": "https://www.udemy.com/course/git-github-version-control/",
+      "course_id": "git-github-version-control",
+      "coupon_code": "GITFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946151"
+    },
+    {
+      "title": "Docker - Contenedores para Desarrolladores",
+      "url": "https://www.udemy.com/course/docker-containers-developers/",
+      "course_id": "docker-containers-developers",
+      "coupon_code": "DOCKERFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946152"
+    },
+    {
+      "title": "AWS - Cloud Computing Fundamentals",
+      "url": "https://www.udemy.com/course/aws-cloud-computing-fundamentals/",
+      "course_id": "aws-cloud-fundamentals",
+      "coupon_code": "AWSFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946153"
+    },
+    {
+      "title": "Machine Learning con Python",
+      "url": "https://www.udemy.com/course/machine-learning-python-complete/",
+      "course_id": "machine-learning-python",
+      "coupon_code": "MLPYTHONFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946154"
+    },
+    {
+      "title": "Data Science y Análisis de Datos",
+      "url": "https://www.udemy.com/course/data-science-analysis-complete/",
+      "course_id": "data-science-analysis",
+      "coupon_code": "DATASCIENCEFREE",
+      "screenshot_path": null,
+      "extracted_at": "2025-08-06T13:25:09.946155"
     }
-  ]
+  ],
+  "total_courses": 10,
+  "last_updated": "2025-08-06T13:25:09.948499",
+  "source": "CursosDev.com"
 }
