@@ -380,13 +380,38 @@ def verify_course_is_free_and_screenshot(driver, udemy_url, course_id):
         driver.get(udemy_url)
         time.sleep(5)  # Más tiempo para cargar
         
-        # Verificar si estamos en una página de Cloudflare
+        # Manejar Cloudflare con más paciencia
+        max_cloudflare_attempts = 3
+        for attempt in range(max_cloudflare_attempts):
+            page_source = driver.page_source.lower()
+            if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
+                print(f"⚠️ Detectada página de verificación Cloudflare (intento {attempt + 1}/{max_cloudflare_attempts})")
+                print("💡 Esperando a que se complete la verificación...")
+                time.sleep(15)  # Esperar más tiempo para que se complete la verificación
+                
+                # Intentar hacer clic en el botón de verificación si existe
+                try:
+                    verify_buttons = driver.find_elements(By.XPATH, "//button[contains(text(), 'Verify')] | //button[contains(text(), 'Verificar')] | //input[@type='submit']")
+                    if verify_buttons:
+                        print("🖱️ Haciendo clic en botón de verificación...")
+                        verify_buttons[0].click()
+                        time.sleep(10)
+                except:
+                    pass
+                
+                # Verificar si ya no estamos en Cloudflare
+                page_source = driver.page_source.lower()
+                if "cloudflare" not in page_source and "verifique que usted es un ser humano" not in page_source:
+                    print("✅ Verificación Cloudflare completada, continuando...")
+                    break
+            else:
+                break
+        
+        # Verificar si seguimos en Cloudflare después de todos los intentos
         page_source = driver.page_source.lower()
         if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
-            print("⚠️ Detectada página de verificación Cloudflare")
-            print("💡 Intentando esperar a que se complete la verificación...")
-            time.sleep(10)  # Esperar más tiempo para que se complete la verificación
-            page_source = driver.page_source.lower()
+            print("❌ No se pudo completar la verificación Cloudflare")
+            return False, None
         
         # Obtener el texto de la página
         page_text = page_source
@@ -581,45 +606,50 @@ def take_focused_screenshot_from_element(driver, focused_element, course_id):
         # Verificar si estamos en una página de Cloudflare
         page_source = driver.page_source.lower()
         if "cloudflare" in page_source or "verifique que usted es un ser humano" in page_source:
-            print("⚠️ Detectada página de verificación Cloudflare")
-            print("📸 Tomando captura de la página de verificación")
+            print("❌ No se puede tomar captura: aún estamos en página de verificación Cloudflare")
+            return None
+        
+        # Verificar que estamos en una página de Udemy válida
+        current_url = driver.current_url
+        if "udemy.com/course/" not in current_url:
+            print("❌ No se puede tomar captura: no estamos en una página de curso de Udemy")
+            return None
+        
+        # Si no se especifica elemento, tomar captura completa
+        if not focused_element:
+            print("📸 Tomando captura completa de la página del curso")
             screenshot = driver.get_screenshot_as_png()
         else:
-            # Si no se especifica elemento, tomar captura completa
-            if not focused_element:
-                print("📸 Tomando captura completa de la página")
-                screenshot = driver.get_screenshot_as_png()
-            else:
-                # Tomar captura enfocada en el elemento
-                location = focused_element.location
-                size = focused_element.size
-                
-                # Tomar captura completa
-                screenshot = driver.get_screenshot_as_png()
-                
-                # Recortar la imagen para enfocarse en el elemento
-                img = Image.open(io.BytesIO(screenshot))
-                
-                # Calcular coordenadas del elemento
-                left = location['x']
-                top = location['y']
-                right = location['x'] + size['width']
-                bottom = location['y'] + size['height']
-                
-                # Agregar margen más amplio para incluir título del curso
-                margin_x = 200  # Margen horizontal más amplio
-                margin_y = 100  # Margen vertical
-                
-                left = max(0, left - margin_x)
-                top = max(0, top - margin_y)
-                right = min(img.width, right + margin_x)
-                bottom = min(img.height, bottom + margin_y)
-                
-                # Recortar la imagen
-                img = img.crop((left, top, right, bottom))
-                screenshot = io.BytesIO()
-                img.save(screenshot, format='PNG')
-                screenshot = screenshot.getvalue()
+            # Tomar captura enfocada en el elemento
+            location = focused_element.location
+            size = focused_element.size
+            
+            # Tomar captura completa
+            screenshot = driver.get_screenshot_as_png()
+            
+            # Recortar la imagen para enfocarse en el elemento
+            img = Image.open(io.BytesIO(screenshot))
+            
+            # Calcular coordenadas del elemento
+            left = location['x']
+            top = location['y']
+            right = location['x'] + size['width']
+            bottom = location['y'] + size['height']
+            
+            # Agregar margen más amplio para incluir título del curso
+            margin_x = 200  # Margen horizontal más amplio
+            margin_y = 100  # Margen vertical
+            
+            left = max(0, left - margin_x)
+            top = max(0, top - margin_y)
+            right = min(img.width, right + margin_x)
+            bottom = min(img.height, bottom + margin_y)
+            
+            # Recortar la imagen
+            img = img.crop((left, top, right, bottom))
+            screenshot = io.BytesIO()
+            img.save(screenshot, format='PNG')
+            screenshot = screenshot.getvalue()
         
         # Redimensionar la imagen para que sea más pequeña
         img = Image.open(io.BytesIO(screenshot))
@@ -820,64 +850,6 @@ def extract_courses_from_cursosdev(driver, max_courses=10):
             except Exception as e:
                 print(f"   ❌ Error navegando a {page_name}: {str(e)}")
                 continue
-        
-        # Si no se encontraron suficientes cursos reales, agregar algunos de demostración
-        total_courses = len(courses)
-        if total_courses < max_courses:
-            print(f"\n⚠️ Solo se encontraron {total_courses} cursos reales, agregando cursos de demostración...")
-            
-            test_courses = [
-                {
-                    'title': 'Python para Principiantes - Curso Completo 2024',
-                    'url': 'https://www.udemy.com/course/python-for-beginners-complete-course-2024/',
-                    'course_id': 'python-beginners-2024',
-                    'coupon_code': 'PYTHON2024FREE',
-                    'screenshot_path': None,
-                    'extracted_at': datetime.now().isoformat(),
-                    'source_page': 'Demo'
-                },
-                {
-                    'title': 'JavaScript Completo desde Cero hasta Avanzado',
-                    'url': 'https://www.udemy.com/course/javascript-complete-zero-to-advanced/',
-                    'course_id': 'javascript-complete-advanced',
-                    'coupon_code': 'JSCOMPLETEFREE',
-                    'screenshot_path': None,
-                    'extracted_at': datetime.now().isoformat(),
-                    'source_page': 'Demo'
-                },
-                {
-                    'title': 'React.js - Curso Completo con Hooks y Context',
-                    'url': 'https://www.udemy.com/course/react-js-complete-course-hooks-context/',
-                    'course_id': 'react-complete-hooks',
-                    'coupon_code': 'REACTFULLFREE',
-                    'screenshot_path': None,
-                    'extracted_at': datetime.now().isoformat(),
-                    'source_page': 'Demo'
-                },
-                {
-                    'title': 'Node.js y Express - Backend Development',
-                    'url': 'https://www.udemy.com/course/nodejs-express-backend-development/',
-                    'course_id': 'nodejs-express-backend',
-                    'coupon_code': 'NODEFREE',
-                    'screenshot_path': None,
-                    'extracted_at': datetime.now().isoformat(),
-                    'source_page': 'Demo'
-                },
-                {
-                    'title': 'MongoDB - Base de Datos NoSQL Completa',
-                    'url': 'https://www.udemy.com/course/mongodb-nosql-database-complete/',
-                    'course_id': 'mongodb-nosql-complete',
-                    'coupon_code': 'MONGODBFREE',
-                    'screenshot_path': None,
-                    'extracted_at': datetime.now().isoformat(),
-                    'source_page': 'Demo'
-                }
-            ]
-            
-            # Agregar cursos de demostración hasta completar el máximo
-            remaining = max_courses - total_courses
-            courses.extend(test_courses[:remaining])
-            print(f"✅ Agregados {remaining} cursos de demostración")
         
         print(f"\n🎉 Extracción completada: {len(courses)} cursos encontrados")
         print(f"📊 Resumen por páginas:")
@@ -1276,7 +1248,7 @@ def publish_to_github(courses):
 
 def main():
     """Función principal"""
-    print("🤖 BOT MEJORADO - 10 CURSOS GRATUITOS DE UDEMY")
+    print("🤖 BOT MEJORADO - CURSOS GRATUITOS DE UDEMY")
     print("=" * 60)
     
     # Configurar Chrome Driver
@@ -1286,8 +1258,8 @@ def main():
         return
     
     try:
-        # Extraer cursos
-        courses = extract_courses_from_cursosdev(driver, max_courses=10)
+        # Extraer cursos (solo cursos reales verificados)
+        courses = extract_courses_from_cursosdev(driver, max_courses=20)  # Buscar más para encontrar suficientes reales
         
         if not courses:
             print("❌ No se encontraron cursos gratuitos")
@@ -1296,14 +1268,18 @@ def main():
         print(f"\n📊 Resumen:")
         print(f"   ✅ Cursos encontrados: {len(courses)}")
         print(f"   📸 Capturas tomadas: {len([c for c in courses if c['screenshot_path']])}")
-        print(f"   🎯 Objetivo: 10 cursos")
+        print(f"   🎯 Cursos reales verificados: {len(courses)}")
         
-        # Publicar en GitHub
-        if publish_to_github(courses):
-            print("\n🎉 ¡Proceso completado exitosamente!")
-            print("🌐 Visita tu página en GitHub Pages para ver los resultados")
+        # Solo publicar si hay al menos 1 curso real
+        if len(courses) >= 1:
+            # Publicar en GitHub
+            if publish_to_github(courses):
+                print("\n🎉 ¡Proceso completado exitosamente!")
+                print("🌐 Visita tu página en GitHub Pages para ver los resultados")
+            else:
+                print("\n⚠️ Hubo problemas al publicar, pero los cursos se extrajeron correctamente")
         else:
-            print("\n⚠️ Hubo problemas al publicar, pero los cursos se extrajeron correctamente")
+            print("\n⚠️ No se encontraron suficientes cursos reales para publicar")
     
     except Exception as e:
         print(f"❌ Error en el proceso: {str(e)}")
