@@ -4,7 +4,7 @@ Página web con cursos gratuitos de Udemy extraídos de CursosDev.
 
 ## 🌐 Página Web
 
-**Visita la página web:** [https://TU_USUARIO.github.io/cursos-udemy-gratis/](https://TU_USUARIO.github.io/cursos-udemy-gratis/)
+**Visita la página web:** [https://Francisco-Campos-S.github.io/cursos-udemy-gratis.github.io/](https://Francisco-Campos-S.github.io/cursos-udemy-gratis.github.io/)
 
 ## 📊 Características
 
@@ -43,7 +43,7 @@ Los cursos se actualizan automáticamente cada día a las 8:00 AM UTC.
 
 Si encuentras un curso que no funciona o quieres sugerir mejoras:
 
-1. Ve a [Issues](https://github.com/TU_USUARIO/cursos-udemy-gratis/issues)
+1. Ve a [Issues](https://github.com/Francisco-Campos-S/cursos-udemy-gratis.github.io/issues)
 2. Crea un nuevo issue
 3. Describe el problema o sugerencia
 
