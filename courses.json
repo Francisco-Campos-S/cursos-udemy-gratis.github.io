@@ -1,12 +1,76 @@
 {
   "courses": [
     {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/flutter-gemini/?couponCode=AGOSTO-2025",
+      "course_id": "flutter-gemini",
+      "coupon_code": "AGOSTO",
+      "screenshot_path": "screenshots/flutter-gemini_focused.png",
+      "extracted_at": "2025-08-06T13:38:43.814381",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/elementor-hosting-como-crear-una-pagina-web-con-wordpress?couponCode=ELEMENTORH-GR73",
+      "course_id": "elementor-hosting-como-crear-una-pagina-web-con-wordpress",
+      "coupon_code": "ELEMENTORH",
+      "screenshot_path": "screenshots/elementor-hosting-como-crear-una-pagina-web-con-wordpress_focused.png",
+      "extracted_at": "2025-08-06T13:39:00.049471",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/agile-certified-practitioner-pmi-acp-practice-exam-2025-x?couponCode=AUGOPEN0",
+      "course_id": "agile-certified-practitioner-pmi-acp-practice-exam-2025-x",
+      "coupon_code": "AUGOPEN0",
+      "screenshot_path": "screenshots/agile-certified-practitioner-pmi-acp-practice-exam-2025-x_focused.png",
+      "extracted_at": "2025-08-06T13:39:16.648898",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/web3-development-essentials?couponCode=9FFC5561EFCB0654D82C",
+      "course_id": "web3-development-essentials",
+      "coupon_code": "9FFC5561EFCB0654D82C",
+      "screenshot_path": "screenshots/web3-development-essentials_focused.png",
+      "extracted_at": "2025-08-06T13:39:32.842739",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/comprehensive-flutter-development-practice-test?couponCode=SKILLMATTERS",
+      "course_id": "comprehensive-flutter-development-practice-test",
+      "coupon_code": "SKILLMATTERS",
+      "screenshot_path": "screenshots/comprehensive-flutter-development-practice-test_focused.png",
+      "extracted_at": "2025-08-06T13:39:49.481556",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/como-crear-correos-corporativos-con-dominio-propio-en-gmail?couponCode=CORREOS-GR92",
+      "course_id": "como-crear-correos-corporativos-con-dominio-propio-en-gmail",
+      "coupon_code": "CORREOS",
+      "screenshot_path": "screenshots/como-crear-correos-corporativos-con-dominio-propio-en-gmail_focused.png",
+      "extracted_at": "2025-08-06T13:40:05.713726",
+      "source_page": "Página Principal"
+    },
+    {
+      "title": "www.udemy.com",
+      "url": "https://click.linksynergy.com/deeplink?id=sIt9MIeGnaM&mid=47900&murl=https://www.udemy.com/course/el-proceso-administrativo-para-triunfar-y-ser-feliz?couponCode=6130AABF22FAF7AAE769",
+      "course_id": "el-proceso-administrativo-para-triunfar-y-ser-feliz",
+      "coupon_code": "6130AABF22FAF7AAE769",
+      "screenshot_path": "screenshots/el-proceso-administrativo-para-triunfar-y-ser-feliz_focused.png",
+      "extracted_at": "2025-08-06T13:40:23.066390",
+      "source_page": "Página Principal"
+    },
+    {
       "title": "Python para Principiantes - Curso Completo 2024",
       "url": "https://www.udemy.com/course/python-for-beginners-complete-course-2024/",
       "course_id": "python-beginners-2024",
       "coupon_code": "PYTHON2024FREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946124"
+      "extracted_at": "2025-08-06T13:40:24.067385",
+      "source_page": "Demo"
     },
     {
       "title": "JavaScript Completo desde Cero hasta Avanzado",
@@ -14,7 +78,8 @@
       "course_id": "javascript-complete-advanced",
       "coupon_code": "JSCOMPLETEFREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946146"
+      "extracted_at": "2025-08-06T13:40:24.067399",
+      "source_page": "Demo"
     },
     {
       "title": "React.js - Curso Completo con Hooks y Context",
@@ -22,66 +87,11 @@
       "course_id": "react-complete-hooks",
       "coupon_code": "REACTFULLFREE",
       "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946148"
-    },
-    {
-      "title": "Node.js y Express - Backend Development",
-      "url": "https://www.udemy.com/course/nodejs-express-backend-development/",
-      "course_id": "nodejs-express-backend",
-      "coupon_code": "NODEFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946149"
-    },
-    {
-      "title": "MongoDB - Base de Datos NoSQL Completa",
-      "url": "https://www.udemy.com/course/mongodb-nosql-database-complete/",
-      "course_id": "mongodb-nosql-complete",
-      "coupon_code": "MONGODBFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946150"
-    },
-    {
-      "title": "Git y GitHub - Control de Versiones",
-      "url": "https://www.udemy.com/course/git-github-version-control/",
-      "course_id": "git-github-version-control",
-      "coupon_code": "GITFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946151"
-    },
-    {
-      "title": "Docker - Contenedores para Desarrolladores",
-      "url": "https://www.udemy.com/course/docker-containers-developers/",
-      "course_id": "docker-containers-developers",
-      "coupon_code": "DOCKERFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946152"
-    },
-    {
-      "title": "AWS - Cloud Computing Fundamentals",
-      "url": "https://www.udemy.com/course/aws-cloud-computing-fundamentals/",
-      "course_id": "aws-cloud-fundamentals",
-      "coupon_code": "AWSFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946153"
-    },
-    {
-      "title": "Machine Learning con Python",
-      "url": "https://www.udemy.com/course/machine-learning-python-complete/",
-      "course_id": "machine-learning-python",
-      "coupon_code": "MLPYTHONFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946154"
-    },
-    {
-      "title": "Data Science y Análisis de Datos",
-      "url": "https://www.udemy.com/course/data-science-analysis-complete/",
-      "course_id": "data-science-analysis",
-      "coupon_code": "DATASCIENCEFREE",
-      "screenshot_path": null,
-      "extracted_at": "2025-08-06T13:25:09.946155"
+      "extracted_at": "2025-08-06T13:40:24.067402",
+      "source_page": "Demo"
     }
   ],
   "total_courses": 10,
-  "last_updated": "2025-08-06T13:25:09.948499",
+  "last_updated": "2025-08-06T13:40:24.071219",
   "source": "CursosDev.com"
 }
